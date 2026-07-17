@@ -1,0 +1,53 @@
+timezone: America/Denver
+
+faces:
+  sec_114: 118
+  sec_363: 100
+
+ticketmaster:
+  # Colorado Avalanche attraction ID (Ticketmaster Discovery API v2), confirmed live 2026-07-16
+  attraction_id: K8vZ9171KM7
+  # Ball Arena, Denver CO venue ID (Ticketmaster Discovery API v2), confirmed live 2026-07-16
+  venue_id: KovZpZAFaJeA
+
+seatgeek:
+  # UNVERIFIED as of 2026-07-16 - SeatGeek credentials still pending approval.
+  # Confirm these slugs against a live /2/events call before the first real run.
+  performer_slug: colorado-avalanche
+  venue_slug: ball-arena
+
+# Opponent -> tier map (A/B/C/D). Every NHL team is seeded here with a TBD
+# placeholder so an opponent never silently falls through to UNMAPPED just
+# because you haven't assigned it yet. Fill these in yourself.
+tiers:
+  Anaheim Ducks: TBD
+  Boston Bruins: TBD
+  Buffalo Sabres: TBD
+  Calgary Flames: TBD
+  Carolina Hurricanes: TBD
+  Chicago Blackhawks: TBD
+  Columbus Blue Jackets: TBD
+  Dallas Stars: TBD
+  Detroit Red Wings: TBD
+  Edmonton Oilers: TBD
+  Florida Panthers: TBD
+  Los Angeles Kings: TBD
+  Minnesota Wild: TBD
+  Montreal Canadiens: TBD
+  Nashville Predators: TBD
+  New Jersey Devils: TBD
+  New York Islanders: TBD
+  New York Rangers: TBD
+  Ottawa Senators: TBD
+  Philadelphia Flyers: TBD
+  Pittsburgh Penguins: TBD
+  San Jose Sharks: TBD
+  Seattle Kraken: TBD
+  St. Louis Blues: TBD
+  Tampa Bay Lightning: TBD
+  Toronto Maple Leafs: TBD
+  Utah Mammoth: TBD
+  Vancouver Canucks: TBD
+  Vegas Golden Knights: TBD
+  Washington Capitals: TBD
+  Winnipeg Jets: TBD

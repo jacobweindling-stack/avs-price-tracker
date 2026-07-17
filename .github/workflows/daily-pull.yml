@@ -1,0 +1,41 @@
+name: Daily Price Pull
+
+on:
+  schedule:
+    # 14:00 UTC ~= 8am Denver (winter) / 7am Denver (summer). Scheduled runs
+    # can slip 10-30 minutes under GitHub Actions load; irrelevant for a
+    # once-daily pull, so no need to compensate for it.
+    - cron: '0 14 * * *'
+  workflow_dispatch: {}
+
+jobs:
+  pull-prices:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+
+      - name: Install dependencies
+        run: pip install -r requirements.txt
+
+      - name: Run price pull
+        env:
+          SEATGEEK_CLIENT_ID: ${{ secrets.SEATGEEK_CLIENT_ID }}
+          SEATGEEK_CLIENT_SECRET: ${{ secrets.SEATGEEK_CLIENT_SECRET }}
+          TICKETMASTER_API_KEY: ${{ secrets.TICKETMASTER_API_KEY }}
+        run: python pull_prices.py
+
+      - name: Commit and push if changed
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+          git add data/prices.csv
+          git diff --quiet --cached || git commit -m "Daily price pull: $(date -u +'%Y-%m-%d')"
+          git push
